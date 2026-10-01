@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: drycofarm
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .

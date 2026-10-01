@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Beet Root Powder | DryCo Farm</title><meta name="description" content="Beet Root Powder — DryCo Farm."><link rel="stylesheet" href="assets/product-detail.css"><link rel="stylesheet" href="assets/order.css"><style>:root{--accent:#7c1539;--green:#58102a;}</style></head>
+<body>
+<header class="nav"><div class="nav-inner"><a href="index.html" aria-label="DryCo Farm home"><img class="logo" src="assets/logo.jpg" alt="DryCo Farm"></a><nav class="navlinks" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Our Products</a><a href="contact.html">Contact</a></nav><div class="tagline">🍃 Pure <span>•</span> Natural <span>•</span> Healthy</div></div></header>
+<main>
+<section class="hero"><a class="back" href="products.html">← Back to Our Products</a><div class="product-hero" style="margin-top:20px"><div class="visual"><div class="badge">Naturally Dried</div><img class="product-image" src="assets/products/beet.jpg" alt="Beet Root Powder 250g DryCo Farm pack" id="productImage"></div><div class="copy"><p class="eyebrow">DryCo Farm · Product</p><h1>Beet Root Powder</h1><p class="subtitle">Fine beet root powder presented in the DryCo Farm 250 g pack. A versatile beet root powder designed for convenient everyday use.</p><div class="pills"><span class="pill">100% Pure</span><span class="pill">Naturally Dried</span><span class="pill">No Added Preservatives</span></div><div class="actions"><a class="btn primary" href="#order">Order on WhatsApp →</a><a class="btn secondary" href="products.html">View All Products</a></div></div></div></section>
+<section class="section"><div class="section-title"><p class="eyebrow">From the pack</p><h2>Simple. Natural. Convenient.</h2><p>The product image above is the supplied DryCo Farm package reference. Product highlights below are presented to match the packaging reference.</p></div><div class="info-grid"><article class="info-card"><div class="icon">🌿</div><h3>Pure format</h3><p>100% Pure — a fine powder format that is easy to portion and use.</p></article><article class="info-card"><div class="icon">☀️</div><h3>Dry processed</h3><p>Naturally Dried — the supplied pack presents the product as a naturally dried powder.</p></article><article class="info-card"><div class="icon">✦</div><h3>DryCo Farm pack</h3><p>250 g retail pack with product and storage information shown on the supplied reference.</p></article></div></section>
+<section class="section" style="padding-top:15px"><div class="details"><div class="panel"><h3>Product Details</h3><div class="specs"><div class="spec"><strong>Pack size</strong><span>250 g</span></div><div class="spec"><strong>Format</strong><span>Fine powder</span></div><div class="spec"><strong>Origin</strong><span>Product of India</span></div><div class="spec"><strong>Storage</strong><span>Store in a cool, dry place</span></div><div class="spec"><strong>Available sizes</strong><span>100 g · 200 g · 500 g</span></div></div><p class="note">Please follow the storage and usage directions printed on the actual pack.</p></div><div class="panel"><h3>Ways to Use</h3><ul class="uses"><li>Blend into smoothies or other recipes for colour and flavour.</li><li>Use as a dry ingredient in home cooking and baking.</li><li>Keep the pack sealed and store as shown on the package.</li></ul><p class="note">These are general serving ideas, not medical advice or a guarantee of health effects.</p></div></div></section>
+<section class="order-section" id="order">
+  <div class="order-box">
+    <div class="order-heading"><p class="eyebrow">Quick order</p><h2>Order Beet Root Powder</h2><p>Fill in your details and continue to WhatsApp. Your order will be sent securely to the DryCo Farm order group from <strong>9969129992</strong>.</p></div>
+    <form class="order-form" id="orderForm" novalidate>
+      <div class="field"><label for="customerName">Name *</label><input id="customerName" name="name" type="text" autocomplete="name" placeholder="Your full name" required></div>
+      <div class="field"><label for="quantity">Quantity *</label><input id="quantity" name="qty" type="number" min="1" step="1" value="1" inputmode="numeric" required></div>
+      <div class="field"><label for="size">Size *</label><select id="size" name="size" required><option value="100 g">100 g</option><option value="200 g">200 g</option><option value="500 g">500 g</option></select></div>
+            <div class="field full"><label for="address">Delivery Address *</label><textarea id="address" name="address" autocomplete="street-address" placeholder="House / Flat, Street, Area, City, State, PIN code" required></textarea></div>
+      <div class="order-actions"><button class="wa-order" type="submit">🟢 Order on WhatsApp</button><p class="order-note">Your order is sent automatically to the DryCo Farm order group. You do not need to join the group.</p></div>
+    </form>
+    <div class="order-error" id="orderError">Please fill in Name, Quantity, Size and Delivery Address.</div>
+  </div>
+</section>
+<section class="cta-band"><div class="cta-inner"><div><h2>Interested in Beet Root Powder?</h2><p>Send us an enquiry for product details, availability or bulk-order discussions.</p></div><a class="btn" href="contact.html?product=beet">Contact DryCo Farm →</a></div></section>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2025 DryCo Farm. All rights reserved.</span><span><a href="index.html">Home</a> · <a href="products.html">Products</a> · <a href="contact.html">Contact</a></span></div></footer>
+<div class="modal" id="imageModal" aria-hidden="true"><button class="close" id="closeModal" aria-label="Close image">×</button><img src="assets/products/beet.jpg" alt="Beet Root Powder enlarged package image"></div>
+<script>
+const navLinks=document.querySelectorAll('a[href]');
+navLinks.forEach(a=>a.addEventListener('click',e=>{const u=a.getAttribute('href');if(!u||u.startsWith('#')||u.startsWith('mailto:')||a.target==='_blank')return;e.preventDefault();document.body.classList.add('page-exit');setTimeout(()=>location.href=u,280)}));
+window.addEventListener('pageshow',()=>document.body.classList.remove('page-exit'));
+document.querySelectorAll('.btn,.back').forEach(el=>{el.addEventListener('pointerdown',()=>el.classList.add('is-pressed'));['pointerup','pointercancel','pointerleave'].forEach(ev=>el.addEventListener(ev,()=>el.classList.remove('is-pressed')))});
+const modal=document.getElementById('imageModal'),img=document.getElementById('productImage');img.addEventListener('click',()=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false')});document.getElementById('closeModal').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+
+const orderForm=document.getElementById('orderForm');
+orderForm.addEventListener('submit',async function(e){
+  e.preventDefault();
+  const name=document.getElementById('customerName').value.trim();
+  const qty=document.getElementById('quantity').value;
+  const size=document.getElementById('size').value;
+  const address=document.getElementById('address').value.trim();
+  const err=document.getElementById('orderError');
+  const button=orderForm.querySelector('.wa-order');
+  if(!name||!qty||Number(qty)<1||!size||!address){err.style.display='block';return;}
+  err.style.display='none';
+  button.disabled=true; button.textContent='⏳ Sending Order…';
+  try{
+    const response=await fetch('/api/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:'Beet Root Powder',size,qty:Number(qty),name,address})});
+    const data=await response.json();
+    if(!response.ok) throw new Error(data.message||'Order could not be sent.');
+    button.textContent='✅ Order Sent';
+    alert(`Order ${data.orderId} received successfully. Thank you, ${name}!`);
+    orderForm.reset(); document.getElementById('quantity').value=1; document.getElementById('size').value='100 g';
+    setTimeout(()=>{button.disabled=false;button.textContent='🟢 Order on WhatsApp';},2200);
+  }catch(error){
+    console.error(error); alert(error.message||'Please try again.');
+    button.disabled=false; button.textContent='🟢 Order on WhatsApp';
+  }
+});
+</script></body></html>

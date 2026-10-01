@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact | DryCo Farm</title><meta name="description" content="DryCo Farm — Pure, Natural, Healthy dry powders."><style>
+:root{--green:#0e4b31;--cream:#f7f3e4;--light:#eef2dc;--gold:#b07a43;--accent:#08704c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--green);font-family:Arial,Helvetica,sans-serif;opacity:0;animation:pageIn .55s ease forwards}
+body.page-exit{animation:pageOut .28s ease forwards}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pageOut{from{opacity:1}to{opacity:0;transform:translateY(-8px)}}
+a{color:inherit}
+.site{max-width:1440px;margin:auto}
+.artwork{width:100%;display:block;height:auto;user-select:none;transform:scale(1);transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .5s ease;will-change:transform}.click-layer:hover .artwork{transform:scale(1.006)}
+.click-layer{position:relative;overflow:hidden;isolation:isolate}.click-layer:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 0%,rgba(255,255,255,0) 42%,rgba(255,255,255,.16) 50%,rgba(255,255,255,0) 58%,transparent 100%);transform:translateX(-120%);transition:transform .9s ease;z-index:4}.click-layer:hover:after{transform:translateX(120%)}
+.hotspot{position:absolute;display:block;background:rgba(255,255,255,0);border:0;cursor:pointer;z-index:5;border-radius:12px;transition:transform .25s ease,background .25s ease,box-shadow .25s ease,filter .25s ease}
+.hotspot:hover{transform:scale(1.06);background:rgba(255,255,255,.12);box-shadow:0 8px 24px rgba(14,75,49,.16),inset 0 0 0 1px rgba(255,255,255,.24);backdrop-filter:blur(1px)}.hotspot:focus-visible{outline:2px solid #08704c;outline-offset:3px}.hotspot:before{content:'';position:absolute;inset:12%;border-radius:inherit;background:rgba(255,255,255,0);transition:background .2s ease}.hotspot:hover:before{background:rgba(255,255,255,.05)}
+.hotspot:active{transform:scale(.96)}
+.hotspot.home{top:0;left:27%;width:8%;height:7%}
+.hotspot.about{top:0;left:37%;width:8%;height:7%}
+.hotspot.products{top:0;left:46%;width:12%;height:7%}
+.hotspot.contact{top:0;left:59%;width:9%;height:7%}
+.product-hotspot{position:absolute;top:42%;height:30%;width:21%;border-radius:20px}
+.product-hotspot:nth-of-type(1){left:3.5%}.product-hotspot:nth-of-type(2){left:27%}.product-hotspot:nth-of-type(3){left:51%}.product-hotspot:nth-of-type(4){left:75%}
+.product-hotspot:hover{transform:translateY(-7px) scale(1.035);box-shadow:0 16px 32px rgba(14,75,49,.22),0 0 0 1px rgba(255,255,255,.25);background:rgba(255,255,255,.09)}
+.contact-form{position:absolute;left:45.5%;top:32.7%;width:49%;height:35.8%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 2.35fr auto;gap:1.05%;padding:0;z-index:8}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;min-width:0;border:1px solid rgba(20,70,45,.18);border-radius:10px;background:rgba(255,255,255,.96);padding:clamp(4px,1vw,10px) clamp(5px,1.25vw,13px);color:#214d38;font-size:clamp(7px,1.46vw,15px);line-height:1.2;outline:none;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:rgba(8,112,76,.55);box-shadow:0 0 0 3px rgba(8,112,76,.10);transform:translateY(-1px)}
+.contact-form textarea{grid-column:1/-1;resize:none;min-height:0}
+.contact-form button{grid-column:1/-1;justify-self:start;align-self:start;border:0;border-radius:28px;background:#08704c;color:#fff;font-weight:700;padding:clamp(5px,1.1vw,12px) clamp(10px,2.7vw,28px);font-size:clamp(7px,1.3vw,14px);cursor:pointer;box-shadow:0 7px 18px rgba(8,112,76,.18);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.contact-form button:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(8,112,76,.25);background:#075f41}
+.contact-form button:active{transform:scale(.97)}
+.contact-form .status{grid-column:1/-1;font-size:12px;background:rgba(247,243,228,.92);padding:4px 8px;border-radius:8px}
+.detail{min-height:100vh;padding:32px 20px;background:#f7f3e4}
+.card{max-width:900px;margin:auto;background:#fffdf5;border:1px solid #dfe5cf;border-radius:24px;padding:36px;box-shadow:0 18px 50px rgba(14,75,49,.08);animation:cardIn .65s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px) scale(.985)}to{opacity:1;transform:none}}
+.back,.cta{transition:transform .2s ease,box-shadow .2s ease}
+.back{display:inline-block;margin-bottom:25px;text-decoration:none;font-weight:700}
+.back:hover{transform:translateX(-4px)}
+h1{font-family:Georgia,serif;font-size:48px;margin:10px 0 15px}
+p{font-size:18px;line-height:1.7;max-width:720px}
+.cta{display:inline-block;background:#08704c;color:#fff;padding:14px 24px;border-radius:28px;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(8,112,76,.18)}
+.cta:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(8,112,76,.25)}
+@media(max-width:700px){
+ .hotspot:hover{transform:none;background:transparent;box-shadow:none;backdrop-filter:none}
+ .hotspot:active{background:rgba(255,255,255,.14);box-shadow:0 4px 12px rgba(14,75,49,.12)}
+ .contact-form{left:45.5%;top:32.7%;width:49%;height:35.8%;gap:1.2%}
+ .contact-form input,.contact-form select,.contact-form textarea{padding:4px 5px;font-size:clamp(7px,2.1vw,10px);border-radius:5px}
+ .contact-form button{padding:5px 10px;font-size:clamp(7px,2vw,10px)}
+ .contact-form .status{font-size:7px;padding:2px 4px}
+ .detail{padding:18px 12px}.card{padding:24px;border-radius:18px}h1{font-size:34px}p{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){body,.card,.hotspot,.contact-form input,.contact-form select,.contact-form textarea,.contact-form button,.back,.cta{animation:none!important;transition:none!important}}
+.is-pressed{transform:scale(.96)!important} @media(prefers-reduced-motion:reduce){.click-layer:after{display:none}.artwork{transition:none!important}} </style></head><body><main class="site"><section class="click-layer"><img class="artwork" src="assets/contact.jpg" alt="DryCo Farm Contact"><a class="hotspot home" href="index.html" aria-label="Home"></a>
+<a class="hotspot about" href="about.html" aria-label="About"></a>
+<a class="hotspot products" href="products.html" aria-label="Our Products"></a>
+<a class="hotspot contact" href="contact.html" aria-label="Contact"></a>
+<form class="contact-form" id="contactForm">
+<input name="name" required aria-label="Full Name" placeholder="Full Name *">
+<input name="phone" required aria-label="Phone Number" placeholder="Phone Number *">
+<input name="email" type="email" required aria-label="Email Address" placeholder="Email Address *">
+<select name="product" aria-label="Select Product"><option value="">Select Product</option><option>Beet Root Powder</option><option>Moringa Powder</option><option>Tomato Powder</option><option>Banana Powder</option><option>Bulk Order / Wholesale</option></select>
+<textarea name="message" required aria-label="Your Message" placeholder="Your Message *"></textarea>
+<button type="submit">Send Message →</button><div class="status" id="status" aria-live="polite"></div>
+</form></section></main>
+<script>const productMap={moringa:'Moringa Powder',beet:'Beet Root Powder',tomato:'Tomato Powder',banana:'Banana Powder'};const requestedProduct=new URLSearchParams(location.search).get('product');const productSelect=document.querySelector('select[name=product]');if(requestedProduct&&productMap[requestedProduct]&&productSelect){productSelect.value=productMap[requestedProduct];} 
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const f=new FormData(this);const subject=encodeURIComponent('DryCo Farm Website Enquiry');const body=encodeURIComponent('Name: '+f.get('name')+'\nPhone: '+f.get('phone')+'\nEmail: '+f.get('email')+'\nProduct: '+f.get('product')+'\nMessage: '+f.get('message'));document.getElementById('status').textContent='Opening your email app…';window.location.href='mailto:support@drycofarm.com?subject='+subject+'&body='+body;});</script><script>document.querySelectorAll('a[href]').forEach(a=>a.addEventListener('click',e=>{const u=a.getAttribute('href');if(!u||u.startsWith('#')||u.startsWith('mailto:')||a.target==='_blank')return;e.preventDefault();document.body.classList.add('page-exit');setTimeout(()=>location.href=u,280)}));window.addEventListener('pageshow',()=>document.body.classList.remove('page-exit'));
+document.querySelectorAll('a.hotspot,a.cta,a.back,.contact-form button').forEach(el=>{
+  el.addEventListener('pointerdown',()=>el.classList.add('is-pressed'));
+  el.addEventListener('pointerup',()=>el.classList.remove('is-pressed'));
+  el.addEventListener('pointercancel',()=>el.classList.remove('is-pressed'));
+});
+</script></body></html>
