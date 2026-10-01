@@ -2,6 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+// Keep Puppeteer's browser cache inside the deployed project so the same
+// Chrome binary is available during both build and runtime on Render.
+process.env.PUPPETEER_CACHE_DIR = process.env.PUPPETEER_CACHE_DIR || path.join(__dirname, '.cache', 'puppeteer');
+const puppeteer = require('puppeteer');
+
 const qrcode = require('qrcode-terminal');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 
@@ -25,6 +30,7 @@ const client = new Client({
   authStrategy: new LocalAuth({ dataPath: path.join(__dirname, '.wwebjs_auth') }),
   puppeteer: {
     headless: true,
+    executablePath: puppeteer.executablePath(),
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
   }
 });
