@@ -1,10 +1,12 @@
 const express = require('express');
 const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys');
 const qrcode = require('qrcode');
-const fs = require('fs');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
+// 1. Public folder add kela
+app.use(express.static(path.join(__dirname, 'public')));
 
 let qrData = null;
 let isReady = false;
@@ -15,9 +17,7 @@ let groups = [];
 async function start() {
     const { state, saveCreds } = await useMultiFileAuthState('./auth');
     sock = makeWASocket({ auth: state, printQRInTerminal: false });
-    
     sock.ev.on('creds.update', saveCreds);
-    
     sock.ev.on('connection.update', async (up) => {
         const { connection, lastDisconnect, qr } = up;
         if (qr) { qrData = qr; isReady = false; console.log('QR Aala'); }
@@ -38,7 +38,13 @@ async function start() {
 }
 start();
 
-app.get('/', (req,res) => res.send(`<h2>${isReady?'✅ READY - <a href=/groups>Groups bagh</a>':'QR Baki - <a href=/qr>/qr la ja</a>'}</h2>`));
+// 2. Aata / var tuza DryCo cha design disel
+app.get('/', (req,res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// 3. Juna wala status aata /status var gela
+app.get('/status', (req,res) => res.send(`<h2>${isReady?'✅ READY - <a href=/groups>Groups bagh</a>':'QR Baki - <a href=/qr>/qr la ja</a>'}</h2>`));
 
 app.get('/qr', async (req,res) => {
     if (isReady) return res.send('<h2>✅ READY</h2><a href=/groups style=font-size:24px>Groups Bagha</a>');
@@ -67,7 +73,7 @@ app.get('/test-order', async (req,res)=>{
 });
 
 app.post('/order', async (req,res)=>{
-    if(!GROUP_ID) return res.json({ok:false});
+    if(!GROUP_ID) return res.json({ok:false, msg: 'Group set nahi'});
     await sock.sendMessage(GROUP_ID, { text: `🛒 New Order:\n${JSON.stringify(req.body,null,2)}` });
     res.json({ok:true});
 });
