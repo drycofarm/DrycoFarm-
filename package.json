@@ -1,5 +1,5 @@
 {
-  "name": "drycofarm",
+  "name": "drycofarm-1",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -7,9 +7,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "cors": "^2.8.5",
     "qrcode": "^1.5.3",
-    "whatsapp-web.js": "^1.23.0",
-    "puppeteer": "^22.11.0"
+    "whatsapp-web.js": "^1.26.0"
   }
 }
