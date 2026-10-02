@@ -1,56 +1,57 @@
 const express = require('express');
-const cors = require('cors');
-const path = require('path');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode');
-
 const app = express();
-app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.urlencoded({extended:true}));
 
-let GROUP_ID = null;
-let lastQR = null;
+let qrData = null;
+let isReady = false;
+let groups = [];
 
 const client = new Client({
-  authStrategy: new LocalAuth(),
-  puppeteer: { args: ['--no-sandbox','--disable-setuid-sandbox'] }
+    authStrategy: new LocalAuth({ clientId: "dryco" }),
+    puppeteer: {
+        headless: true,
+        args: ['--no-sandbox','--disable-setuid-sandbox','--disable-dev-shm-usage','--single-process']
+    }
 });
 
-client.on('qr', qr => { lastQR = qr; });
-client.on('ready', () => {
-  console.log('✅ READY');
-  client.getChats().then(chats => {
-    chats.filter(c=>c.isGroup).forEach(g => console.log(`GROUP: ${g.name} => ${g.id._serialized}`));
-  });
+client.on('qr', (qr) => {
+    console.log('QR ready');
+    qrData = qr;
+    isReady = false;
 });
-
+client.on('ready', async () => {
+    console.log('✅ READY');
+    isReady = true;
+    qrData = null;
+    try{
+        const chats = await client.getChats();
+        groups = chats.filter(c=>c.isGroup).map(g=>({name:g.name, id:g.id._serialized}));
+        console.log('GROUPS:', groups);
+    }catch(e){ console.log(e) }
+});
+client.on('disconnected', ()=>{ isReady=false; qrData=null; client.initialize(); });
 client.initialize();
 
 app.get('/qr', async (req,res)=>{
-  if(!lastQR) return res.send('QR yet nahi - 10 sec ne refresh kara');
-  const img = await qrcode.toDataURL(lastQR);
-  res.send(`<center><img src="${img}" width="350"></center>`);
+    if(isReady) return res.send('<h2>✅ READY - WhatsApp Connected</h2><a href="/groups">Groups bagha</a>');
+    if(!qrData) return res.send('<h3>30 sec ne refresh kara - QR yetoy...</h3><script>setTimeout(()=>location.reload(),5000)</script>');
+    const qrImg = await qrcode.toDataURL(qrData);
+    res.send(`<h3>Scan kara 20 sec madhe</h3><img src="${qrImg}" style="width:300px"/><script>setTimeout(()=>location.reload(),20000)</script>`);
 });
-
-app.get('/pair', async (req,res)=>{
-  const num = req.query.number;
-  if(!num) return res.send('Use /pair?number=919969129992');
-  try {
-    const code = await client.requestPairingCode(num);
-    res.send(`<h1>CODE: ${code}</h1><p>WhatsApp > Linked Devices > Link with phone number > Code taka</p>`);
-  } catch(e){ res.send('Error: '+e.message+' - 1 min ne parat try kara'); }
+app.get('/groups', (req,res)=>{
+    if(!isReady) return res.send('Adhi QR scan kara');
+    let h='<h2>Groups:</h2><ul>';
+    groups.forEach(g=>{ h+=`<li>${g.name} => <a href="/set-group/${g.id}">${g.id}</a> <br><small>Ha link dabla ki group set hoil</small></li><br>` });
+    res.send(h);
 });
-
-app.get('/set-group/:id', (req,res)=>{ GROUP_ID=req.params.id; res.send('Group Set: '+GROUP_ID); });
-
-app.post('/api/order', async (req,res)=>{
-  if(!GROUP_ID) return res.status(400).json({error:'Group set nahi'});
-  const {name,mobile,product,qty,address}=req.body;
-  const msg = `🛒 NEW ORDER\nNaav: ${name}\nMob: ${mobile}\nProd: ${product}\nQty: ${qty}\nAddr: ${address}`;
-  await client.sendMessage(GROUP_ID, msg);
-  res.json({success:true});
+app.get('/set-group/:id', (req,res)=>{
+    process.env.GROUP_ID = req.params.id;
+    res.send(`Group Set: ${req.params.id} <br><br> Aata order test kara`);
 });
+app.get('/', (req,res)=>{ res.send('DrycoFarm Live - /qr la ja'); });
 
-app.get('/', (req,res)=> res.sendFile(path.join(__dirname,'index.html')));
-app.listen(process.env.PORT||3000, ()=> console.log('Server chalu'));
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, ()=>console.log('Server chalu '+PORT));
